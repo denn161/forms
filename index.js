@@ -1,6 +1,4 @@
 'use strict';
-
-
 document.addEventListener('DOMContentLoaded', function () {
 
     const form = document.getElementById('form');
@@ -16,25 +14,32 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (error === 0) {
             form.classList.add('_sending');
-            let response = await fetch('sendmail.php', {
-                method: 'POST',
-                body: formData,                
-            });
-
-            if (response.ok) {
-                let result = await response.json();
-                alert(result.message);
+            setTimeout(function () {
+                form.classList.remove('_sending');
                 formPreview.innerHTML = '';
                 form.reset();
               	form.classList.remove('_sending');
-            }
-            else {
-				alert("Ошибка");
-				form.classList.remove('_sending');
-			}            
+            },2000)
+            // let response = await fetch('sendmail.php', {
+            //     method: 'POST',
+            //     body: formData,                
+            // });
+
+            // if (response.ok) {
+            //     let result = await response.json();
+            //     alert(result.message);
+            //     formPreview.innerHTML = '';
+            //     form.reset();
+            //   	form.classList.remove('_sending');
+            // }
+           
+			
+			            
         }
         else {
+				
             alert('Заполните нужные поля');
+            form.classList.remove('_sending');
         }       
 
 
